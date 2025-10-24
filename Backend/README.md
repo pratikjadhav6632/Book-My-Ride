@@ -253,3 +253,83 @@ Content-Type: application/json
 - The password is automatically hashed before being stored in the database
 - The response includes a JWT token that should be used for authenticated requests
 - The user object in the response does not include the hashed password for security reasons
+
+...existing code...
+
+## Captain Routes
+
+Base path: /captain
+
+### POST /captain/register
+
+Register a new captain.
+
+Request body (JSON)
+```json
+{
+  "fullname": {
+    "firstname": "John",
+    "lastname": "Doe"
+  },
+  "email": "captain@example.com",
+  "password": "securepassword123",
+  "vehical": {
+    "color": "White",
+    "plate": "TN01AB1234",
+    "capacity": 4,
+    "vehicalType": "sedan"
+  }
+}
+```
+
+Validation rules
+- fullname.firstname: string, required, min 3 chars
+- fullname.lastname: string, required, min 3 chars
+- email: valid email, required
+- password: string, required, min 8 chars
+- vehical.color: string, required, min 3 chars
+- vehical.plate: string, required, min 3 chars
+- vehical.capacity: integer, required, min 1
+- vehical.vehicalType: one of ["XUV","sedan","Motor","car","auto"]
+
+Success (201 Created)
+Example response:
+```json
+{
+  "message": "<JWT token string>",
+  "captain": {
+    "_id": "64f4b51824e64e00198e0ac0",
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "captain@example.com",
+    "socketId": null,
+    "status": "inactive",
+    "role": null,
+    "vehical": {
+      "color": "White",
+      "plate": "TN01AB1234",
+      "capacity": 4,
+      "vehicalType": "sedan"
+    },
+    "location": {
+      "lat": null,
+      "lang": null
+    }
+  }
+}
+```
+Notes: response `message` contains the generated JWT token. The stored password is not returned.
+
+Errors
+- 400 Bad Request
+  - Validation errors (returns array of validation error objects)
+  - Captain already exists: `{ "message": "Captain already exists" }`
+- 500 Internal Server Error
+  - Unexpected server / DB errors
+
+Implementation notes
+- Controller: controllers/captain.controller.js -> registerCaptain
+- Router: routes/captain.routes.js validates inputs using express-validator
+- Model: models/captain.model.js defines schema, password hashing helpers, and generateAuthToken method
