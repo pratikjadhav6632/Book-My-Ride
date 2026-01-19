@@ -48,7 +48,7 @@ module.exports.loginUser=async(req,res,next)=>{
     }
     const token=user.generateAuthToken();
 
-    res.cookies('token',token);
+    res.cookie('token',token);
 
     res.status(200).json({token,user});
 }
