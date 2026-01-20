@@ -6,7 +6,6 @@ const app=express();
 const connectToDb=require("./DB/db");
 const userRoutes=require("./routes/user.routes");
 const cookieParser = require("cookie-parser");
-const captainModel = require("./models/captain.model");
 const captainRoutes=require("./routes/captain.routes");
 
 //MongoDb Func
