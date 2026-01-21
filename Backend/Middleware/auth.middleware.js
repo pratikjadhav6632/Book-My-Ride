@@ -37,7 +37,7 @@ module.exports.authCaptain=async(req,res,next)=>{
   const isblacklisted=await blacklistTokenModel.findOne({token:token});
 
   if(isblacklisted){
-    return res.status(401).json({message:"unauthorized "});
+    return res.status(401).json({message:"Unauthorized "});
   }
 
   try{

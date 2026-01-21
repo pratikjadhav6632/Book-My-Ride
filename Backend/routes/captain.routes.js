@@ -21,7 +21,7 @@ router.post('/login',[
     body('password').isLength({min:8}).withMessage('Password must be at least 8 character long')
 ],captainController.loginCaptain)
 
-router.get('/profile',authCaptain,captainController.getProfile);
+router.get('/profile',authCaptain,captainController.getCaptainProfile);
 
 router.get('/logout',authCaptain,captainController.logoutCaptain);
 
