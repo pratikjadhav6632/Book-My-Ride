@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function CaptainLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userData, setUserData] = useState({});
+  const [captainData, setCaptainData] = useState({});
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -13,11 +13,11 @@ export default function CaptainLogin() {
     } else {
       alert("login failed");
     }
-    setUserData({
+    setCaptainData({
       email: email,
       password: password,
     });
-    console.log(userData);
+    console.log(captainData);
     setEmail("");
     setPassword("");
   };
@@ -25,7 +25,12 @@ export default function CaptainLogin() {
     <>
       <div className="p-7 h-screen mt-5 flex flex-col justify-between">
         <div>
-          <h3 className="text-3xl font-bold twxt-black mb-3 ">Uber</h3>
+          <h3 className="text-3xl font-bold twxt-black  ">Book My Ride</h3>
+          <img
+            className="h-7"
+            src="https://png.pngtree.com/png-vector/20190411/ourmid/pngtree-vector-forward-icon-png-image_925823.jpg"
+            alt=""
+          />
           <form action="" onSubmit={(e) => handleLogin(e)}>
             <h3 className="text-xl mb-2">What's your Email</h3>
             <input
@@ -64,10 +69,10 @@ export default function CaptainLogin() {
 
         <div className="mt-7  mb-5 flex justify-center ">
           <Link
-            className="flex item-center justify-center w-full p-3 rounded-md text-xl font-semibold text-white bg-amber-600"
+            className="flex item-center justify-center w-full p-3 rounded-md text-xl font-semibold text-white bg-green-400"
             to="/user-login"
           >
-            Signup as User
+            Login as User
           </Link>
         </div>
       </div>

@@ -25,9 +25,9 @@ export default function UserLogin() {
     <>
       <div className="p-7 h-screen mt-5 flex flex-col justify-between">
         <div>
-          <h3 className="text-3xl font-bold twxt-black mb-3 ">Uber</h3>
+          <h3 className="text-3xl font-bold twxt-black mb-3 ">Book My Ride</h3>
           <form action="" onSubmit={(e) => handleLogin(e)}>
-            <h3 className="text-xl mb-2">What's your Email</h3>
+            <h3 className="text-xl mb-2 mt-2">What's your Email</h3>
             <input
               type="email"
               value={email}
@@ -67,7 +67,7 @@ export default function UserLogin() {
             className="flex item-center justify-center w-full p-3 rounded-md text-xl font-semibold text-white bg-green-400"
             to="/captain-login"
           >
-            Signup as Captain
+            Login as Captain
           </Link>
         </div>
       </div>
